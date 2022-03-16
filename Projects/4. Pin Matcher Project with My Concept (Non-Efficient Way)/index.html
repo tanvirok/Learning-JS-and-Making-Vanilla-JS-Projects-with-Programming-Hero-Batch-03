@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="pinGenerateCount" class="form-control" type="text">
+                    <button id="pinGenerateBtn" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input id="confirmationCodeCount" class="form-control" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div onclick="calculation('7')" class="button">7</div>
+                              <div onclick="calculation('8')" class="button">8</div>
+                              <div onclick="calculation('9')" class="button">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div onclick="calculation('4')" class="button">4</div>
+                              <div onclick="calculation('5')" class="button">5</div>
+                              <div onclick="calculation('6')" class="button">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div onclick="calculation('1')" class="button">1</div>
+                              <div onclick="calculation('2')" class="button">2</div>
+                              <div onclick="calculation('3')" class="button">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button">&lt;</div>
+                                <div onclick="calculation('0')" class="button">0</div>
+                                <div onclick="deleteMe()" class="button">C</div>
+                            </div>
+                            <div>
+                                <button type="submit" id="submit" class="submit-btn">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p id="notify-negative" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="notify-positive" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+        
+        // ==========
+        document.getElementById('pinGenerateBtn').addEventListener('click', function(){
+            let random = (1000 + Math.random() * 9000);
+            let randomInteger = Math.round(random);
+            document.getElementById('pinGenerateCount').value = randomInteger;
+
+            let notifyNegative = document.getElementById('notify-negative');
+            let notifyPositive = document.getElementById('notify-positive');
+            notifyNegative.style.visibility = 'hidden';
+            notifyPositive.style.visibility = 'hidden';
+        })
+
+        // ==========
+        function deleteMe(){
+            document.getElementById('confirmationCodeCount').value = "";
+        }
+
+        // ==========
+        function calculation(NewValue){
+            const confirmationCodeInput = document.getElementById('confirmationCodeCount').value += NewValue;
+            const confirmationCodeCount = parseInt(confirmationCodeInput.value);
+        }
+
+        // ==========
+        document.getElementById('submit').addEventListener('click', function(){
+            let confirmationCodeInput = document.getElementById('confirmationCodeCount');
+            let confirmationCodeCount = parseInt(confirmationCodeInput.value);
+
+            let pinGenerateInput = document.getElementById('pinGenerateCount');
+            let pinGenerateCount = parseInt(pinGenerateInput.value);
+
+            if(confirmationCodeCount == pinGenerateCount){
+                const notifyPositive = document.getElementById('notify-positive');
+                notifyPositive.style.visibility = 'visible';
+            }
+            else{
+                const notifyNegative = document.getElementById('notify-negative');
+                notifyNegative.style.visibility = 'visible';
+            }
+
+            confirmationCodeInput.value = '';
+            pinGenerateInput.value = '';
+        })
+
+    </script>
+
+</body>
+</html>
