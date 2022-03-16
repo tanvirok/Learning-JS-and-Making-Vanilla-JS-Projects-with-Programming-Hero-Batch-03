@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="minusBtn1" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="count1" type="text" class="form-control text-center" value="1">
+                           <button id="plusBtn1" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$<span id="price1">1200</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="minusBtn2" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="count2" type="text" class="form-control text-center" value="1">
+                           <button id="plusBtn2" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$<span id="price2">700</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$<span id="subtotal">1900</span></h5>
+                        <h5>$<span id="tax">190</span></h5>
+                        <h5>$<span id="total">2090</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!--------------------- Javascript ------------------>
+   <script>
+
+      const plusBtn1 = document.getElementById('plusBtn1');
+      const minusBtn1 = document.getElementById('minusBtn1');
+      const count1 = document.getElementById('count1');
+      const price1 = document.getElementById('price1');
+      const price2 = document.getElementById('price2');
+
+      const subtotal = document.getElementById('subtotal');
+      const tax = document.getElementById('tax');
+      const total = document.getElementById('total');
+
+      plusBtn1.addEventListener('click', function(){
+         increament1("count1", "price1");
+         subtotalFunc("price1", "price2", "subtotal");
+         taxFunc("subtotal", "tax");
+         totalFunc("subtotal", "tax", "total");
+      })
+      minusBtn1.addEventListener('click', function(){
+         decreament1("count1", "price1");
+         subtotalFunc("price1", "price2", "subtotal");
+         taxFunc("subtotal", "tax");
+         totalFunc("subtotal", "tax", "total");
+      })
+
+      const plusBtn2 = document.getElementById('plusBtn2');
+      const minusBtn2 = document.getElementById('minusBtn2');
+      const count2 = document.getElementById('count2');
+      // const price2 = document.getElementById('price2');
+
+      plusBtn2.addEventListener('click', function(){
+         increament2("count2", "price2");
+         subtotalFunc("price1", "price2", "subtotal");
+         taxFunc("subtotal", "tax");
+         totalFunc("subtotal", "tax", "total");
+      })
+      minusBtn2.addEventListener('click', function(){
+         decreament2("count2", "price2");
+         subtotalFunc("price1", "price2", "subtotal");
+         taxFunc("subtotal", "tax");
+         totalFunc("subtotal", "tax", "total");
+      })         
+
+
+   // All functions ===============================================================
+   //  for plus ========
+   function increament1(coun1, pric1){
+      let count1 = document.getElementById(coun1);
+      let price1 = document.getElementById(pric1);
+
+      if(count1.value >= 5){
+         count1.value = 5;
+         alert("Maximum five products you can buy!");
+      }
+      else{
+         count1.value++;
+
+         let result = parseInt(count1.value) * 1200;
+         price1.innerText = result;
+      }
+}
+   //  for minus =======
+   function decreament1(coun1, pric1){
+      let count1 = document.getElementById(coun1);
+      let price1 = document.getElementById(pric1);
+
+      if(count1.value <= 1){
+         count1.value = 1;
+         alert("Minimum one product you have to buy!")
+      }
+      else{
+         count1.value--;
+
+         let result = parseInt(count1.value) * 1200;
+         price1.innerText = result;
+
+      }
+}  
+
+
+   //  for plus ========
+   function increament2(coun2, pric2){
+      let count2 = document.getElementById(coun2);
+      let price2 = document.getElementById(pric2);
+
+      if(count2.value >= 5){
+         count2.value = 5;
+         alert("Maximum five products you can buy!");
+      }
+      else{
+         count2.value++;
+
+         let result2 = parseInt(count2.value) * 700;
+         price2.innerText = result2;
+      }
+}
+   //  for minus =======
+   function decreament2(coun2, pric2){
+      let count2 = document.getElementById(coun2);
+      let price2 = document.getElementById(pric2);
+
+      if(count2.value <= 1){
+         count2.value = 1;
+         alert("Minimum one product you have to buy!")
+      }
+      else{
+         count2.value--;
+
+         let result2 = parseInt(count2.value) * 700;
+         price2.innerText = result2;
+
+      }
+}     
+      // ==============================================================
+
+      // subtotal control =============
+      function subtotalFunc(id, bd, cd){
+         const price1 = document.getElementById(id);
+         const price2 = document.getElementById(bd);
+         const subtotal = document.getElementById(cd);
+
+         let result = parseInt(price1.innerText) + parseInt(price2.innerText);
+         subtotal.innerText = result;
+      }
+      // tax control ==============
+      function taxFunc(id, bd){
+         const subtotal = document.getElementById(id);
+         const tax = document.getElementById(bd);
+
+         let result = parseInt(subtotal.innerText) * (10 / 100);           // if tax is 10% of total amount
+         tax.innerText = result;
+      }
+      // total control =============
+      function totalFunc(id, bd, cd){
+         const subtotal = document.getElementById(id);
+         const tax = document.getElementById(bd);
+         const total = document.getElementById(cd);
+
+         let result = parseInt(subtotal.innerText) + parseInt(tax.innerText);
+         total.innerText = result;
+      }
+
+   </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- // Plus control =================================================
+         const plusBtn1 = document.getElementById('plusBtn1');
+         plusBtn1.addEventListener('click', function(){
+            plusControl("firstInput");
+      })
+         const plusBtn2 = document.getElementById('plusBtn2');
+         plusBtn2.addEventListener('click', function(){
+            plusControl("secondInput");
+         })
+
+      // Minus control =================================================
+         const minusBtn1 = document.getElementById('minusBtn1');
+         minusBtn1.addEventListener('click', function(){
+            minusControl("firstInput");
+      })
+         const minusBtn2 = document.getElementById('minusBtn2');
+         minusBtn2.addEventListener('click', function(){
+            minusControl("secondInput");
+         })
+
+      // Price Control ==================================================
+         const firstInput = document.getElementById("firstInput").value;
+         firstInpt 
+      
+      // All functions ==================================================
+      function plusControl(id){
+            const firstInput = document.getElementById(id).value;
+            const firstInputNumber = parseInt(firstInput);
+            const plusOne = firstInputNumber + 1;
+            document.getElementById(id).value = plusOne;
+      }
+
+      function minusControl(id){
+         const secondInput = document.getElementById(id).value;
+         const secondInputNumber = parseInt(secondInput);
+         const minusOne = secondInputNumber - 1;
+         document.getElementById(id).value = minusOne;
+      } -->
