@@ -776,6 +776,92 @@ console.log(result);
 
 
 
+                        // Module : 23 
+// Video No - 5 (Four different ways to declare Arrow function)
+const wayOne = num => num * 2;
+const wayTwo = (x, y) => x + y;
+const wayThree = () => 5;
+const wayFour = (x, y) => {
+    const sum = x + y;
+    const diff = x - y;
+    const result = sum * diff;
+    return result;
+}
+
+const result1 = wayOne(50);
+const result2 = wayTwo(10, 15);
+const result3 = wayThree();
+const result4 = wayFour(35, 15);
+
+console.log();
+
+// Video No - 06 (concat, three dots, Math.max)
+const ages = [05, 10, 15, 20, 25];
+const ages1 = [30, 35, 40, 45, 50];
+const ages2 = [60, 65, 70, 75, 80];
+
+const allAges = ages.concat(ages1).concat([55]).concat(ages2);  // Attaching a number of Array by using Concatenation
+const allAges2 = [...ages, ...ages1, 5, ...ages2];              // Attaching a number of Array by using Three Dots 
+
+console.log();
+
+// Video No - 07 (Detail about Class)
+class Student{
+    constructor(sId, sName){
+        this.id = sId;
+        this.name = sName;
+        this.school = "Uttara High School";
+    }
+}
+
+const student1 = Student(12, "Maruf");
+const student2 = Student(13, "Tahsin");
+
+console.log(student1, student2);
+console.log(student1.name, student2.name);
+
+// Video No - 08 (More detail about Class)
+class Parent{
+    constructor(){
+        this.fatherName = "Kholillur Rahman";
+    }
+}
+class Child extends Parent{
+    constructor(name){
+        super();
+        this.myName = name;
+    }
+    getFullName(){
+        return this.myName + " " + this.fatherName;
+    }
+}
+
+const baby = new Child("Rafi");
+const baby2 = new Child("Tafi");
+
+console.log(baby.getFullName());
+console.log(baby2.getFullName());
+
+// Video No - 09    (About Destructure)
+const person = { name = 'jack willium', age: 17, job = 'facebooker', gfName = 'Ema waston', address = 'Dhaka', phone = '01766658224', friends = ['Rakib', 'Shojib', 'Rihan'] }
+const { phone, gfName, address } = person;
+console.log(gfName, phone, address);
+
+const friends = ['Sakib Khan', 'Arman Khan', 'Amir Khan', 'Salman Khan', 'Sharukh Khan'];
+const [first] = friends;
+
+const complexObject = {
+    name = 'abc',
+    info: {
+        address: 'Kola Bagan';
+        leader: 'Tiger Leader';
+    }
+}
+const {leader} = complexObject.info;
+
+
+
+
 
 
 
