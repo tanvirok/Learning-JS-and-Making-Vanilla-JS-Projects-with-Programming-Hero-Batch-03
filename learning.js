@@ -861,6 +861,122 @@ const {leader} = complexObject.info;
 
 
 
+                // Module : 24 (Interview questions)
+
+// Video No : 05 
+const students = [
+    { id: 21, name: 'Omar Sunny' },
+    { id: 31, name: 'Maannaaaaa' },
+    { id: 41, name: 'Moyouri' },
+    { id: 71, name: 'Deepjol' }
+]
+
+const names = students.map( s => s.name );      // The way to make a array to take all the name
+const ids   = students.map( s => s.id );        // The way to make a array to take all the id
+const bigger = students.filter( s => s.id>40 ); // The way to get those object's id whose id number are upper 40
+const biggerOne = students.find(s => s.id>40);  // The way to get that object's id which id number is upper 40 from the 40 first
+
+console.log(biggerOne);
+
+
+                // Module : 25 (==== API ====)
+
+// Video No - 05    (The way to receive data from the server to local machine/client-side)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>JSON</h1>
+    <h2>JavaScript Object Notation</h2>
+    <ul id="users-container"></ul>
+
+    <script>
+
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(json => displayUser(json))
+
+        function displayUser(users){
+            const userNames = users.map(user => user.username);
+            const ul = document.getElementById("users-container");
+
+            for(i = 0; i < userNames.length; i++){
+                const username = userNames[i];
+                const li = document.createElement("li");
+                li.innerText = username;
+                ul.appendChild(li);
+            }
+        }
+
+    </script>
+</body>
+</html>
+
+
+// Video No - 08    (The way to send requests to the server from a local machine)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>JSON</h1>
+    <h2>JavaScript Object Notation</h2>
+    <ul id="users-container"></ul>
+
+    <input id="title" type="text" placeholder="Title">
+    <br>
+    <input id="body-content" type="text" placeholder="Body Content">
+    <br>
+    <button id="submit">Submit</button> 
+
+    <!-- JavaScript -->
+    <script>
+    document.getElementById('submit').addEventListener('click', function(){
+        const title = document.getElementById('title').value;
+        const bodyContent = document.getElementById('body-content').value;
+        const post = { title: title, body: bodyContent };
+        nowPostToServer(post);
+    })
+
+    function nowPostToServer(postInfo){
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            body: JSON.stringify(postInfo),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+    }
+
+        function displayUser(users){
+            const userNames = users.map(user => user.username);
+            const ul = document.getElementById("users-container");
+
+            for(i = 0; i < userNames.length; i++){
+                const username = userNames[i];
+                const li = document.createElement("li");
+                li.innerText = username;
+                ul.appendChild(li);
+            }
+        }
+
+    </script>
+</body>
+</html>
+
 
 
 
