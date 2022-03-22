@@ -979,6 +979,222 @@ console.log(biggerOne);
 
 
 
+            // Module : 26 
+
+// Video No - 01
+const normalPerson = {
+    firstName: 'Rahim',
+    lastName: 'Uddin',
+    salary: 15000,
+    getFullName: function(){
+        console.log(this.firstName, this.lastName);
+    },
+    chargeBill: function(amount){
+        this.salary = this.salary - amount;
+        return this.salary;
+    }
+}
+
+normalPerson.chargeBill(5000);
+console.log(normalPerson.salary);
+
+// Video No - 02         (== bind ==)
+const normalPerson = {
+    firstName: 'Rahim',
+    lastName: 'Uddin',
+    salary: 15000,
+    getFullName: function(){
+        console.log(this.firstName, this.lastName);
+     },
+    chargeBill: function(amount){
+        this.salary = this.salary - amount;
+        return this.salary;
+    }
+}
+normalPerson.chargeBill(5000);
+console.log(normalPerson.salary);
+    
+    
+const heroPerson = {
+    firstName: 'Hero',
+    lastName: 'Balam',
+    salary: 25000
+}
+    
+const friendlyPerson = {
+    firstName: 'Hero',
+    lastName: 'Golam',
+    salary: 25000
+}
+    
+const heroChargeBill = normalPerson.chargeBill.bind(heroPerson);
+heroChargeBill(2000);
+console.log(heroPerson.salary);
+    
+const friendlyChargeBill = normalPerson.chargeBill.bind(friendlyPerson);
+friendlyChargeBill(3000);
+console.log(friendlyPerson.salary);
+    
+
+// Video No - 03         (============= call =============)
+const normalPerson = {
+    firstName: 'Rahim',
+    lastName: 'Uddin',
+    salary: 15000,
+    getFullName: function(){
+        console.log(this.firstName, this.lastName);
+     },
+    chargeBill: function(amount){
+        this.salary = this.salary - amount;
+        return this.salary;
+    }
+}
+normalPerson.chargeBill(5000);
+console.log(normalPerson.salary);
+    
+    
+const heroPerson = {
+    firstName: 'Hero',
+    lastName: 'Balam',
+    salary: 25000
+}
+    
+const friendlyPerson = {
+    firstName: 'Hero',
+    lastName: 'Golam',
+    salary: 25000
+}
+    
+// const heroChargeBill = normalPerson.chargeBill.bind(heroPerson);
+// heroChargeBill(2000);
+// console.log(heroPerson.salary);
+    
+// const friendlyChargeBill = normalPerson.chargeBill.bind(friendlyPerson);
+// friendlyChargeBill(3000);
+// console.log(friendlyPerson.salary);
+
+normalPerson.chargeBill.call(heroPerson, 2000);
+console.log(heroPerson.salary);
+
+normalPerson.chargeBill.call(friendlyPerson, 3000);
+console.log(friendlyPerson.salary);
+
+// ==================== Using call for a number of parameters ================ 
+const normalPerson = {
+    firstName: 'Rahim',
+    lastName: 'Uddin',
+    salary: 15000,
+    getFullName: function(){
+        console.log(this.firstName, this.lastName);
+     },
+    chargeBill: function(amount, tips, tax){
+        this.salary = this.salary - amount - tips - tax;
+        return this.salary;
+    }
+}
+normalPerson.chargeBill(5000);
+console.log(normalPerson.salary);
+    
+    
+const heroPerson = {
+    firstName: 'Hero',
+    lastName: 'Balam',
+    salary: 25000
+}
+    
+const friendlyPerson = {
+    firstName: 'Hero',
+    lastName: 'Golam',
+    salary: 25000
+}
+    
+// const heroChargeBill = normalPerson.chargeBill.bind(heroPerson);
+// heroChargeBill(2000);
+// console.log(heroPerson.salary);
+    
+// const friendlyChargeBill = normalPerson.chargeBill.bind(friendlyPerson);
+// friendlyChargeBill(3000);
+// console.log(friendlyPerson.salary);
+
+normalPerson.chargeBill.call(heroPerson, 500, 200, 50);
+console.log(heroPerson.salary);
+
+normalPerson.chargeBill.call(friendlyPerson, 1500, 200, 50);
+console.log(friendlyPerson.salary);
+
+// ================= apply ===================
+const normalPerson = {
+    firstName: 'Rahim',
+    lastName: 'Uddin',
+    salary: 15000,
+    getFullName: function(){
+        console.log(this.firstName, this.lastName);
+     },
+    chargeBill: function(amount, tips, tax){
+        this.salary = this.salary - amount - tips - tax;
+        return this.salary;
+    }
+}
+normalPerson.chargeBill(5000);
+console.log(normalPerson.salary);
+    
+    
+const heroPerson = {
+    firstName: 'Hero',
+    lastName: 'Balam',
+    salary: 25000
+}
+    
+const friendlyPerson = {
+    firstName: 'Hero',
+    lastName: 'Golam',
+    salary: 25000
+}
+    
+// const heroChargeBill = normalPerson.chargeBill.bind(heroPerson);
+// heroChargeBill(2000);
+// console.log(heroPerson.salary);
+    
+// const friendlyChargeBill = normalPerson.chargeBill.bind(friendlyPerson);
+// friendlyChargeBill(3000);
+// console.log(friendlyPerson.salary);
+
+// normalPerson.chargeBill.call(heroPerson, 500, 200, 50);
+// console.log(heroPerson.salary);
+
+// normalPerson.chargeBill.call(friendlyPerson, 1500, 200, 50);
+// console.log(friendlyPerson.salary);
+
+normalPerson.chargeBill.apply(heroPerson, [500, 200, 50]);
+console.log(heroPerson.salary);
+
+normalPerson.chargeBill.apply(friendlyPerson, [1500, 200, 50]);
+console.log(friendlyPerson.salary);
+
+// Video No - 05 (====== Making a lot of objects by using class a time =======)
+class Person{
+    constructor(firstName, lastName, salary){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+    }
+}
+
+const heroPerson = new Person('Hero', 'Balam', 20000);
+console.log(heroPerson);
+
+const friendlyPerson = new Person('Hero', 'Kalam', 25000);
+console.log(friendlyPerson);
+
+const oldPerson = new Person('Jolil', 'Kobir', 30000);
+console.log(oldPerson);
+
+
+
+
+
+
+
 
 
 
