@@ -1190,6 +1190,62 @@ const oldPerson = new Person('Jolil', 'Kobir', 30000);
 console.log(oldPerson);
 
 
+                // Module : 29 
+
+// Video No - 01  (===== The way to showing some data in local machine from the server =====)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>   
+    <h1 id="user-name">Name</h1>
+    <script>
+
+        fetch('https://randomuser.me/api')
+        .then(res => res.json())
+        .then(data =>{
+            const user = data.results[0];
+            const name = user.name;
+            const userName = `${name.title} ${name.first} ${name.last}`;
+            document.getElementById('user-name').innerText = userName;
+        })
+
+    </script>
+</body>
+</html>
+
+// Video No - 02    (== Doing something by using API and setInterval ==)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="activity"></h1>
+    <h3>Learn More: <a id="explore-link" href="">Visit this place</a></h3>
+
+    <script>
+        function doSomething() {
+            fetch('https://www.boredapi.com/api/activity')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('activity').innerText = data.activity;
+            })
+        }
+        doSomething();
+        setInterval(() => {
+            doSomething();
+        }, 1000);
+    </script>
+</body>
+</html>
 
 
 
